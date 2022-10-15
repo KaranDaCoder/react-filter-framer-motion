@@ -15,6 +15,7 @@ function App() {
   const [moviesArray, setMoviesArray] = useState(TopTeluguMovies);
   const [filteredMoviesArray, setFilteredMoviesArray] = useState([]);
   const [activeGenre, setActiveGenre] = useState('All');
+  const [activeLanguage, setActiveLanguage] = useState('Telugu');
   useEffect(() => {
     setMoviesArray(moviesArray);
     setFilteredMoviesArray(moviesArray);
@@ -27,6 +28,8 @@ function App() {
         setFilteredMoviesArray={setFilteredMoviesArray}
         activeGenre={activeGenre}
         setActiveGenre={setActiveGenre}
+        activeLanguage={activeLanguage}
+        setActiveLanguage={setActiveLanguage}
       />
       <motion.div layout>
         <MovieContainer>

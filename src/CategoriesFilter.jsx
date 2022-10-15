@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import LanguageFilter from './dataSet/LanguageFilter';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -16,54 +17,60 @@ const Button = styled.button`
     color: whitesmoke;
   }
 `;
+
+const CategoriesContainer = styled.div`
+  display: flex;
+`;
 const CategoriesFilter = ({
   setActiveGenre,
   activeGenre,
   setFilteredMoviesArray,
+  activeLanguage,
+  setActiveLanguage,
   moviesArray,
 }) => {
-  useEffect(() => {
-    if (activeGenre === 'All') {
-      setFilteredMoviesArray(moviesArray);
-      return;
-    }
-    const filtered = moviesArray.filter((movie) =>
-      movie.genres.includes(activeGenre)
-    );
-
-    setFilteredMoviesArray(filtered);
-  }, [activeGenre, moviesArray, setFilteredMoviesArray]);
   return (
-    <div>
-      <Button
-        type='button'
-        onClick={() => setActiveGenre('All')}
-        className={activeGenre === 'All' ? 'active' : ''}
-      >
-        All
-      </Button>
-      <Button
-        type='button'
-        onClick={() => setActiveGenre('Action')}
-        className={activeGenre === 'Action' ? 'active' : ''}
-      >
-        Action
-      </Button>
-      <Button
-        type='button'
-        onClick={() => setActiveGenre('Comedy')}
-        className={activeGenre === 'Comedy' ? 'active' : ''}
-      >
-        Comedy
-      </Button>
-      <Button
-        type='button'
-        onClick={() => setActiveGenre('Drama')}
-        className={activeGenre === 'Drama' ? 'active' : ''}
-      >
-        Drama
-      </Button>
-    </div>
+    <>
+      <CategoriesContainer>
+        <LanguageFilter
+          setActiveLanguage={setActiveLanguage}
+          activeLanguage={activeLanguage}
+          moviesArray={moviesArray}
+          activeGenre={activeGenre}
+          setFilteredMoviesArray={setFilteredMoviesArray}
+          setActiveGenre={setActiveGenre}
+        />
+
+        <Button
+          type='button'
+          onClick={() => setActiveGenre('All')}
+          className={activeGenre === 'All' ? 'active' : ''}
+        >
+          All
+        </Button>
+        <Button
+          type='button'
+          onClick={() => setActiveGenre('Action')}
+          className={activeGenre === 'Action' ? 'active' : ''}
+        >
+          Action
+        </Button>
+        <Button
+          type='button'
+          onClick={() => setActiveGenre('Comedy')}
+          className={activeGenre === 'Comedy' ? 'active' : ''}
+        >
+          Comedy
+        </Button>
+        <Button
+          type='button'
+          onClick={() => setActiveGenre('Drama')}
+          className={activeGenre === 'Drama' ? 'active' : ''}
+        >
+          Drama
+        </Button>
+      </CategoriesContainer>
+    </>
   );
 };
 
